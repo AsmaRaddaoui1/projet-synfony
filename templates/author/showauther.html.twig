@@ -1,0 +1,36 @@
+Nombre d'auteur : {{ tabauthor | length }}
+<br>
+
+{% if tabauthor is not empty and tabauthor is defined %}
+
+<table border="3">
+   <tr>
+       <td>id</td>
+       <td>image</td>
+       <td>username</td>
+       <td>email</td>
+       <td>nb_books</td>
+       <td>Action</td>
+   </tr>
+
+   {% set S = 0 %} {# Initialize S before the loop #}
+
+   {% for a in tabauthor %}
+   <tr>
+      <td>{{ a.id }}</td>
+      <td><img src="{{ a.picture }}" alt="Author Image" width="100"></td>
+      <td>{{ a.username | upper }}</td>
+      <td>{{ a.email }}</td>
+      <td>{{ a.nb_books }}</td>
+      <td><a href="{{ path('author_details', { 'id': a.id }) }}">Details</a></td> 
+   </tr>
+   {% set S = S + a.nb_books %} {# Sum up the number of books #}
+   {% endfor %}
+   
+</table>
+
+La somme : {{ S }} {# Display the sum outside the loop #}
+
+{% else %}
+<p>La liste des auteurs est vide.</p>
+{% endif %}
