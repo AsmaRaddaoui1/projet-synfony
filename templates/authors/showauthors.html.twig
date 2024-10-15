@@ -10,6 +10,8 @@
          <td>{{ a.id }}</td>
          <td>{{ a.username }}</td>
          <td>{{ a.email }}</td>
+         <td><a href="{{ path('app_addformauthors', { 'id': a.id }) }}">Update</a></td> 
+         <td><a href="{{ path('app_deleteauthors', { 'id': a.id }) }}">Update</a></td>
       </tr>
    {% endfor %}
 

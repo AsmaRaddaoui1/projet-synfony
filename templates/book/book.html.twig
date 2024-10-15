@@ -1,0 +1,27 @@
+Nombre d'auteur : {{ tabauthor | length }}
+<br>
+
+{% if tabauthor is not empty and tabauthor is defined %}
+
+<table border="3">
+   <tr>
+       <td>id</td>
+       <td>title</td>
+       <td>date</td>
+       <td>enabled</td>
+       
+   </tr>
+   {% for b in tabauthor %}
+   <tr>
+      <td>{{ b.id }}</td>
+      <td><img src="{{ a.picture }}" alt="Author Image" width="100"></td>
+      <td>{{ b.title | upper }}</td>
+      <td>{{ b.date }}</td>
+      <td>{{ b.enabled  ?'yes':'no'}}</td>
+   </tr>
+   
+   {% endfor %}
+   
+</table>
+
+
