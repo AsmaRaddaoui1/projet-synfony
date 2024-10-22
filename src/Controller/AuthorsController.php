@@ -44,11 +44,11 @@ class AuthorsController extends AbstractController
 
 
         $author = new Author();
-        $author->setUsername("3A43"); // hata hethi zeda maaha 
+        $author->setUsername("3A43");
 
         
         $em->persist($author);
-        $em->flush(); //les deux fcts hethom manccedilhom kn bel manager register : cette methode est statique : inajem ikoli 
+        $em->flush();
 
         return $this->redirectToRoute('app_showauthors');
     }
@@ -106,4 +106,3 @@ class AuthorsController extends AbstractController
 
 
 }
-// bech nasnaa formulaire : php bin/console make:form  nhot esem el form w emb3ed esme el entity kifma heya maktouba
