@@ -25,8 +25,7 @@ class AuthorsController extends AbstractController
     }
 
     #[Route('/showauthors', name: 'app_showauthors')]
-    // AuthorRepository $authorrep : instance: c'est une injection dependance c'est importatnte a utiliser ce mot 
-    // ena manjmch  naacidi toul AuthorRepository  so ayatelha b variable  $authorrep
+
     public function showauthors(AuthorRepository $authorrep): Response
     {
         //Cette variable pour stocker les var de la bd
@@ -40,21 +39,14 @@ class AuthorsController extends AbstractController
     #[Route('/addauthors', name: 'app_addauthors')]
     public function addauthors(ManagerRegistry $m): Response
     { 
-        // el manager houa el chef d'orchestre
-        //fama 2types de managerregester fama el persistance eli ki naamlou mnjmch nekhdm vchy w fama el type el repository
-        //pour la securite 
+      
         $em=$m->getManager();//pour la securite 
 
 
         $author = new Author();
-        //hethi ki nhb nnekhdem manuellement ena nsettihom
         $author->setUsername("3A43"); // hata hethi zeda maaha 
 
         
-        // et taamelha el repository
-        //el bekj yaamlou el manager register il faut l'appeler
-
-        //jebna el manger regisyry w el em el ft nwali nekhdemha b sve ama ahna chnkhdlmou bhaja okhra
         $em->persist($author);
         $em->flush(); //les deux fcts hethom manccedilhom kn bel manager register : cette methode est statique : inajem ikoli 
 
@@ -69,18 +61,14 @@ class AuthorsController extends AbstractController
     public function updateformauthors(Request $request,AuthorRepository $ref ,ManagerRegistry $m ): Response
     
     { 
-        // el manager houa el chef d'orchestre
-        //fama 2types de managerregester fama el persistance eli ki naamlou mnjmch nekhdm vchy w fama el type el repository
-        //pour la securite 
+         
         $em=$m->getManager();//pour la securite 
     
        $author = $ref->find($id);
         
     
-        //hethi ki nhb nnekhdem manuellement ena nsettihom
-        //$author->setUsername("3A43"); // hata hethi zeda maaha 
+        
         $form= $this->createForm(AuthorType::class,$author );
-        //AuthorType::class aamlna class bech yefhm eli heya mech string
         $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $em->persist($author);
@@ -99,9 +87,7 @@ class AuthorsController extends AbstractController
     public function deleteauthors(Request $request,AuthorRepository $ref ,ManagerRegistry $m ): Response
     
     { 
-        // el manager houa el chef d'orchestre
-        //fama 2types de managerregester fama el persistance eli ki naamlou mnjmch nekhdm vchy w fama el type el repository
-        //pour la securite 
+     
         $em=$m->getManager();//pour la securite 
     
        $author = $ref->find($id);
